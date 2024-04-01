@@ -30,8 +30,10 @@ const HomePage = ({ socket }) => {
       .then((data) => data);
   };
 
+  const [data, setData] = useState([]);
+
   const handleClick = () => {
-    getResponse(baseURL).then((data) => console.log(data));
+    getResponse(baseURL).then((data) => setData(data));
   };
   //test
 
@@ -40,6 +42,13 @@ const HomePage = ({ socket }) => {
       <button onClick={handleClick} className="app-btn">
         Get Data
       </button>
+
+      <div style={{margin: "32px 0"}}>
+        {data?.map((item) => (
+          <p key={item.id}>{item.title}</p>
+        ))}
+      </div>
+
       <form onSubmit={handleSubmit} className="home-form">
         <label>Join to chat</label>
         <input
