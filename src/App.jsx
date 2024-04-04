@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import socketIO from "socket.io-client";
 import HomePage from "./components/HomePage/HomePage";
 import ChatPage from "./components/ChatPage/ChatPage";
-const socket = socketIO.connect("http://localhost:5000");
+const socket = socketIO.connect("https://chat-websocket-server.onrender.com");
 
 function App() {
   return (

@@ -23,7 +23,7 @@ const HomePage = ({ socket }) => {
   };
 
   //test
-  const baseURL = "http://localhost:5000/todos";
+  const baseURL = "https://chat-websocket-server.onrender.com/todos";
   const [data, setData] = useState([]);
 
   async function getData() {
