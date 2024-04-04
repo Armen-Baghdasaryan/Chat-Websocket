@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { USER_NAME } from "/src/common/constants.js";
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 const HomePage = ({ socket }) => {
   const [name, setName] = useState("");
@@ -22,33 +23,20 @@ const HomePage = ({ socket }) => {
     setName("");
   };
 
-  //test
-  const baseURL = "https://chat-websocket-server.onrender.com/todos";
-  const [data, setData] = useState([]);
-
+  // test
   async function getData() {
-    const response = await fetch(baseURL);
+    const response = await fetch(`${BASE_URL}/todos`);
     const data = await response.json();
-    setData(data);
+    console.log(data);
   }
 
-  const handleClick = () => {
+  useEffect(() => {
     getData();
-  };
-  //test
+  }, []);
+  // test
 
   return (
     <div className="home-page" style={{ flexDirection: "column", gap: "32px" }}>
-      <button onClick={handleClick} className="app-btn">
-        Get Data
-      </button>
-
-      <div style={{ margin: "32px 0" }}>
-        {data?.map((item) => (
-          <p key={item.id}>{item.title}</p>
-        ))}
-      </div>
-
       <form onSubmit={handleSubmit} className="home-form">
         <label>Join to chat</label>
         <input

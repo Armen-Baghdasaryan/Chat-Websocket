@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import socketIO from "socket.io-client";
 import HomePage from "./components/HomePage/HomePage";
 import ChatPage from "./components/ChatPage/ChatPage";
-const socket = socketIO.connect("https://chat-websocket-server.onrender.com");
+const socket = socketIO.connect(import.meta.env.VITE_BASE_URL);
 
 function App() {
   return (
