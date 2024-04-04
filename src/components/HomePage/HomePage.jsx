@@ -24,16 +24,16 @@ const HomePage = ({ socket }) => {
 
   //test
   const baseURL = "http://localhost:5000/todos";
-  const getResponse = (url) => {
-    return fetch(url)
-      .then((resp) => resp.json())
-      .then((data) => data);
-  };
-
   const [data, setData] = useState([]);
 
+  async function getData() {
+    const response = await fetch(baseURL);
+    const data = await response.json();
+    setData(data);
+  }
+
   const handleClick = () => {
-    getResponse(baseURL).then((data) => setData(data));
+    getData();
   };
   //test
 
@@ -43,7 +43,7 @@ const HomePage = ({ socket }) => {
         Get Data
       </button>
 
-      <div style={{margin: "32px 0"}}>
+      <div style={{ margin: "32px 0" }}>
         {data?.map((item) => (
           <p key={item.id}>{item.title}</p>
         ))}
